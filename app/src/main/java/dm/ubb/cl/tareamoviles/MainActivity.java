@@ -15,24 +15,27 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-    ProgressDialog progressDialog;
+    String nombre;
     Button b;
+    EditText Nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Nombre = (EditText)findViewById(R.id.editText);
 
         b = (Button) findViewById(R.id.siguiente);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                nombre = Nombre.getText().toString();
                 Intent intent = new Intent(MainActivity.this, Indicadores.class);
+                intent.putExtra("nombre",nombre);
                 startActivity(intent);
                 finish();
             }
